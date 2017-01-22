@@ -114,3 +114,16 @@ or
 ```
  $ ng build --output-path ../backend/public/dist
 ```
+
+```
+$ sbt playGenerateSecret
+$ export PLAY_APP_SECRET=`put the result here`
+```
+
+```
+$ unzip target/universal/backend-1.0-SNAPSHOT.zip
+$ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
+```
+
+```
+```

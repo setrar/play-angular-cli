@@ -33,7 +33,7 @@ class ngController @Inject()(ws: WSClient, environment: Environment)(implicit ec
       }
     }
     // If Production, use build files.
-    case Mode.Prod => Assets.versioned(path="public/dist", file)
+    case Mode.Prod => Assets.versioned(path="/public/dist", file)
   }
 
 }
