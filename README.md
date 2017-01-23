@@ -104,15 +104,25 @@ GET     /dist/*file              controllers.ngController.dist(file)
 
 build.sbt
 ```
+val frontEndProjectName = "frontend"
+val backEndProjectName = "backend"
+val distDirectory = ".." + backEndProjectName + "public/dist"
+
+
 // Starts: angularCLI build task
+lazy val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
+
+val buildCmd = "ng build --output-path ../" + backEndProjectName + "/public/dist"
+
 val ngBuild = taskKey[Unit]("ng build task.")
-ngBuild := { Process("ng build --output-path ../backend/public/dist", file("../frontend")) ! }
+ngBuild := { Process(buildCmd , frontendDirectory.value) ! }
 (packageBin in Universal) <<= (packageBin in Universal) dependsOn ngBuild
 // Ends.
-```
-or
-```
- $ ng build --output-path ../backend/public/dist
+
+
+// Starts: ngServe process when running locally and build actions for production bundle
+PlayKeys.playRunHooks <+= frontendDirectory.map(base => ng(base))
+// Ends.
 ```
 
 ```
