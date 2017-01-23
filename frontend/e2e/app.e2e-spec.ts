@@ -1,14 +1,14 @@
-import { FrontendPage } from './app.po';
+import { DLIVEPage } from './app.po';
 
-describe('frontend App', function() {
-  let page: FrontendPage;
+describe('d-live App', function() {
+  let page: DLIVEPage;
 
   beforeEach(() => {
-    page = new FrontendPage();
+    page = new DLIVEPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display message saying Angular Router', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Angular Router');
   });
 });

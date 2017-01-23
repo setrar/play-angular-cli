@@ -28,7 +28,7 @@ class ngController @Inject()(ws: WSClient, environment: Environment)(implicit ec
 
   def dist(file: String) = environment.mode match {
     case Mode.Dev => Action.async {
-      ws.url("http://localhost:4200/" + file).get().map { response =>
+      ws.url("http://localhost:4200/dist" + file).get().map { response =>
         Ok(response.body)
       }
     }
