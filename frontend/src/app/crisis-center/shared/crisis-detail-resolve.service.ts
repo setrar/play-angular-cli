@@ -10,7 +10,7 @@ import { CrisisService } from './crisis.service';
 export class CrisisDetailResolveService implements Resolve<Crisis> {
   constructor(private cs: CrisisService, private router: Router) {}
 
-  resolve(route: ActivatedRouteSnapshot): Promise<Crisis>|boolean {
+  resolve(route: ActivatedRouteSnapshot): Promise<Crisis>|Crisis {
     let id = route.params['id'];
 
     return this.cs.getCrisis(id).then(crisis => {
