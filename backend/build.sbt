@@ -14,6 +14,8 @@ libraryDependencies ++= Seq(
 )
 
 
+/* ================================= WEBPACK ================================== */
+
 val frontEndProjectName = "frontend"
 val backEndProjectName = "backend"
 val distDirectory = ".." + backEndProjectName + "public/dist"
@@ -22,9 +24,11 @@ val distDirectory = ".." + backEndProjectName + "public/dist"
 // Starts: angularCLI build task
 lazy val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
 
-val buildCmd = "ng build --output-path ../" + backEndProjectName + "/public/dist"
+//val buildCmd = "ng build --output-path ../" + backEndProjectName + "/public/dist"
 
-val ngBuild = taskKey[Unit]("ng build task.")
+val buildCmd = "webpack --progress --colors "
+
+val ngBuild = taskKey[Unit]("webpack build task.")
 ngBuild := { Process(buildCmd , frontendDirectory.value) ! }
 (packageBin in Universal) <<= (packageBin in Universal) dependsOn ngBuild
 // Ends.
@@ -33,3 +37,4 @@ ngBuild := { Process(buildCmd , frontendDirectory.value) ! }
 // Starts: ngServe process when running locally and build actions for production bundle
 PlayKeys.playRunHooks <+= frontendDirectory.map(base => ng(base))
 // Ends.
+
