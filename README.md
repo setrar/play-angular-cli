@@ -153,6 +153,32 @@ $ npm install webpack@beta --save-dev
 ```
 $ npm install ts-loader --save-dev 
 ```
+* Create webpack configuration file   
+   `rename`: '/.index.js' to './src/main.ts' in `entry:`
+   `rename`: '/' to './dist' in `output.path:`
+webpack.config.js
+```
+module.exports = {
+ entry: './index.ts',
+ output: {
+   filename: '/bundle.js',
+   path: '/'
+ },
+ module: {
+   rules: [
+     {
+       test: /\.tsx?$/,
+       loader: 'ts-loader',
+       exclude: /node_modules/,
+     },
+   ]
+ }, 
+ resolve: {
+   extensions: [".tsx", ".ts", ".js"]
+ },
+};
+```
+
 
 # webpack plugins
 
