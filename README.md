@@ -135,5 +135,21 @@ $ unzip target/universal/backend-1.0-SNAPSHOT.zip
 $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
 ```
 
+## Adding webpack
 ```
+$ cd frontend
+```
+
+* Add webpack to the project (package.json)
+  note that usging the parameters --save-dev and -save will respectively 
+  add the packages to package.json sections devDependencies and dependencies
+
+```
+$ npm install --save-dev webpack@beta typescript ts-loader
+```
+
+# webpack plugins
+
+```
+npm install html-webpack-plugin --save-dev
 ```
