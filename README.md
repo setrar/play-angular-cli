@@ -124,11 +124,15 @@ object ng {
 }
 ```
 
-## Running
+## Running (Prod)
+
+```
+$ sbt dist
+```
 
 ```
 $ sbt playGenerateSecret
-$ export PLAY_APP_SECRET=`put the result here`
+$ export PLAY_APP_SECRET="put the result here"
 ```
 
 ```
@@ -156,7 +160,8 @@ $ npm install ts-loader --save-dev
 ```
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
-   `rename`: `'/'` to `'./dist'` in `output.path:`  
+   `rename`: `'/'` to `'/dist'` in `output.path:`  
+   `add`: "/dist" to `output.publicPath:`
 
 webpack.config.js
 ```
