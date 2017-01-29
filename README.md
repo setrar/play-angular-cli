@@ -140,7 +140,7 @@ $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
 $ cd frontend
 ```
 
-* Add webpack to the project (package.json)
+* Add webpack to the project (package.json)  
   `note:` that using the parameters --save-dev and -save will respectively 
   add the packages to package.json sections devDependencies and dependencies
 
@@ -148,7 +148,7 @@ $ cd frontend
 ```
 $ npm install webpack@beta --save-dev 
 ```
-* Install TypeScript's loader
+* Install TypeScript's loader  
   `note:` TypeScript should already been installed when using Angular2
 ```
 $ npm install webpack@beta typescript ts-loader --save-dev 
