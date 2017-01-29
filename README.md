@@ -189,5 +189,17 @@ module.exports = {
 ```
 $ npm install html-webpack-plugin --save-dev
 ```
+* Add HtmlWebpackPlugin object
 
+webpack.config.js
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+```
+* point the template to the index.html file  
 
+```
+  plugins: [
+    new HtmlWebpackPlugin({template: './src/index.html'}),
+    ...
+  ]
+```
