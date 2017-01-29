@@ -145,7 +145,7 @@ $ cd frontend
   add the packages to package.json sections devDependencies and dependencies
 
 ```
-$ npm install -webpack@beta typescript ts-loader -save-dev 
+$ npm install webpack@beta typescript ts-loader --save-dev 
 ```
 
 # webpack plugins
