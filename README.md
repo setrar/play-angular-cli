@@ -155,7 +155,7 @@ $ npm install ts-loader --save-dev
 ```
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
-   `rename`: `'/'` to `'./dist'` in `output.path:`
+   `rename`: `'/'` to `'./dist'` in `output.path:`  
 webpack.config.js
 ```
 module.exports = {
