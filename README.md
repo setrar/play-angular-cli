@@ -181,8 +181,12 @@ module.exports = {
 ```
 
 
-# webpack plugins
+## webpack plugins
+
+* [html-webpack-plugin](https://webpack.js.org/concepts/plugins/#configuration)
 
 ```
-npm install html-webpack-plugin --save-dev
+$ npm install html-webpack-plugin --save-dev
 ```
+
+
