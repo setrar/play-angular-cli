@@ -3,6 +3,9 @@
 
 ## Prerequisites
 
+* Install activator and sbt
+* Install node, npm and angular-cli
+
 ## Setup
 
 ### PlayFramework backend
