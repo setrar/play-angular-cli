@@ -154,7 +154,7 @@ $ npm install webpack@beta --save-dev
 $ npm install ts-loader --save-dev 
 ```
 * Create webpack configuration file   
-   `rename`: '/.index.js' to './src/main.ts' in `entry:`
+   `rename`: '/.index.js' to './src/main.ts' in `entry:`  
    `rename`: '/' to './dist' in `output.path:`
 webpack.config.js
 ```
