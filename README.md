@@ -26,7 +26,7 @@ $ ng new frontend
 ```
 package controllers
 
-import javax.inject.Inject
+import javax.inject.{Inject,Singleton}
 
 import play.api.{Environment,Mode}
 import play.api.mvc.{Controller,Action}
@@ -42,19 +42,20 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class HomeController @Inject()(ws: WSClient, environment: Environment)(implicit ec: ExecutionContext) extends Controller {
 
-  def index = Assets.at("/public/dist", "index.html")
+  def index = Assets.versioned(path="/public/dist", "index.html")
 
   def dist(file: String) = environment.mode match {
     case Mode.Dev => Action.async {
-      ws.url("http://localhost:4200/" + file).get().map { response =>
+      ws.url("http://localhost:4200/dist/" + file).get().map { response =>
         Ok(response.body)
       }
     }
     // If Production, use build files.
-    case Mode.Prod => Assets.versioned(path="public/dist", file)
+    case Mode.Prod => Assets.versioned(path="/public/dist", file)
   }
 
 }
+
 ```
 conf/routes
 
