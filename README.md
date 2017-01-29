@@ -148,7 +148,8 @@ $ cd frontend
 ```
 $ npm install webpack@beta --save-dev 
 ```
-* Install TypeScript along with its loader
+* Install TypeScript's loader
+  `note:` TypeScript should already been installed when using Angular2
 ```
 $ npm install webpack@beta typescript ts-loader --save-dev 
 ```
