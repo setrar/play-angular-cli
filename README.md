@@ -141,9 +141,14 @@ $ cd frontend
 ```
 
 * Add webpack to the project (package.json)
-  note that usging the parameters --save-dev and -save will respectively 
+  `note:` that using the parameters --save-dev and -save will respectively 
   add the packages to package.json sections devDependencies and dependencies
 
+* Install webpack
+```
+$ npm install webpack@beta --save-dev 
+```
+* Install TypeScript along with its loader
 ```
 $ npm install webpack@beta typescript ts-loader --save-dev 
 ```
