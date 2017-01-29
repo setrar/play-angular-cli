@@ -183,7 +183,8 @@ module.exports = {
 
 ## webpack plugins
 
-* [html-webpack-plugin](https://webpack.js.org/concepts/plugins/#configuration)
+* Add the [html-webpack-plugin](https://webpack.js.org/concepts/plugins/#configuration) to change the index.html file  
+  this change will allow `<script src=/asset/...>`
 
 ```
 $ npm install html-webpack-plugin --save-dev
