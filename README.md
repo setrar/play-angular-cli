@@ -206,3 +206,5 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
     ...
   ]
 ```
+# Reference
+heavily inspired by https://github.com/setrar/play-webpack
