@@ -153,22 +153,44 @@ https://angular.io/docs/ts/latest/guide/webpack.html
 
 > $ npm install copy-webpack-plugin html-webpack-plugin extract-text-webpack-plugin --save-dev
 
+>     "css-loader": "^0.23.0",
+>     "exports-loader": "0.6.2",
+>     "expose-loader": "^0.7.1",
 >     "file-loader": "^0.9.0",
+>     "istanbul-instrumenter-loader": "^0.1.3",
+>     "imports-loader": "^0.6.4",
+>     "json-loader": "^0.5.3",
 >     "html-loader": "^0.4.3",
 >     "null-loader": "^0.1.1",
 >     "style-loader": "^0.13.1",
 >     "raw-loader": "^0.5.1",
+>     "ts-loader": "^0.7.2",
+>     "tslint-loader": "^2.1.0",
+>     "url-loader": "^0.5.6",
 
+>     "karma-coverage": "^0.5.3",
 >     "karma-phantomjs-launcher": "^1.0.2",
 >     "karma-sourcemap-loader": "^0.3.7",
 >     "karma-webpack": "^2.0.1",
 
+>     "phantomjs": "^1.9.18",
+>     "phantomjs-polyfill": "0.0.1",
 >     "phantomjs-prebuilt": "^2.1.7",
 >     "rimraf": "^2.5.2",
 
 >     "webpack": "2.2.0",
 >     "webpack-dev-server": "2.2.0-rc.0",
 >     "webpack-merge": "^2.4.0"
+
+
+>     "http-server": "^0.8.5",
+>     "reflect-metadata": "0.1.2",
+>     "remap-istanbul": "^0.5.1",
+>     "rimraf": "^2.4.4",
+>     "ts-helper": "0.0.1",
+>     "tsconfig-lint": "^0.4.3",
+>     "typedoc": "^0.3.12",
+>     "typings": "^0.6.1",
 
 
 ## Adding webpack
