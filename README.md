@@ -167,11 +167,16 @@ $ npm install ts-loader --save-dev
 
 webpack.config.js
 ```
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+
 module.exports = {
- entry: './index.ts',
+ entry: {
+    app: './src/main.ts',
+ },
  output: {
-   filename: '/bundle.js',
-   path: '/'
+   filename: '[name].js',
+   path: '../backend/public/dist',
+   publicPath: "/dist"
  },
  module: {
    rules: [
@@ -181,7 +186,10 @@ module.exports = {
        exclude: /node_modules/,
      },
    ]
- }, 
+ },
+ plugins: [
+    new HtmlWebpackPlugin({template: './src/index.html'})
+ ],
  resolve: {
    extensions: [".tsx", ".ts", ".js"]
  },
