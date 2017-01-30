@@ -145,6 +145,27 @@ $ ng new frontend
 ### angular.io and webpack guide
 https://angular.io/docs/ts/latest/guide/webpack.html
 
+>     "html-webpack-plugin": "^2.16.1",
+>     "extract-text-webpack-plugin": "2.0.0-beta.5",
+
+>     "file-loader": "^0.9.0",
+>     "html-loader": "^0.4.3",
+>     "null-loader": "^0.1.1",
+>     "style-loader": "^0.13.1",
+>     "raw-loader": "^0.5.1",
+
+>     "karma-phantomjs-launcher": "^1.0.2",
+>     "karma-sourcemap-loader": "^0.3.7",
+>     "karma-webpack": "^2.0.1",
+
+>     "phantomjs-prebuilt": "^2.1.7",
+>     "rimraf": "^2.5.2",
+
+>     "webpack": "2.2.0",
+>     "webpack-dev-server": "2.2.0-rc.0",
+>     "webpack-merge": "^2.4.0"
+
+
 ## Adding webpack
 ```
 $ cd frontend
