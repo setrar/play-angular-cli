@@ -198,6 +198,24 @@ module.exports = {
 
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
+`html`
+
+```
+$ npm install html-loader --save-dev
+```
+
+```
+     {
+       test: /\.html$/,
+       loader: 'html',
+       query: {
+         minimize: true
+       }
+     }
+```
+
+`css`
+
 ```
 npm install css-loader --save-dev 
 ```
@@ -209,6 +227,7 @@ webpack.config.js
 ```
  {test: /\.css$/, use: 'css-loader'},
 ```
+
 
 
 ## webpack plugins
