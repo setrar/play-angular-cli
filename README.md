@@ -142,6 +142,9 @@ $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
 $ ng new frontend
 ```
 
+### angular.io and webpack guide
+https://angular.io/docs/ts/latest/guide/webpack.html
+
 ## Adding webpack
 ```
 $ cd frontend
