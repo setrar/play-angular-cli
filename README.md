@@ -275,5 +275,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
     ...
   ]
 ```
+
++    "clean": "./node_modules/.bin/rimraf node_modules doc typings coverage dist && npm cache clean",
++    "clean:dist": "./node_modules/.bin/rimraf dist",
++    "preclean:install": "npm run clean",
++    "clean:install": "npm install",
++    "preclean:start": "npm run clean",
++    "clean:start": "npm start",
++    "watch": "npm run watch:dev",
++    "watch:dev": "./node_modules/.bin/webpack --watch --progress --profile --colors --display-error-details --display-cached",
++    "watch:prod": "./node_modules/.bin/webpack --watch --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
++    "build": "npm run build:dev",
++    "prebuild:dev": "npm run clean:dist",
++    "build:dev": "./node_modules/.bin/webpack --progress --profile --colors --display-error-details --display-cached",
++    "prebuild:prod": "npm run clean:dist",
++    "build:prod": "./node_modules/.bin/webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
++    "server": "npm run server:dev",
++    "server:dev": "./node_modules/.bin/webpack-dev-server --progress --profile --colors --display-error-details --display-cached",
++    "server:prod": "./node_modules/.bin/http-server dist --cors",
++    "webdriver:update": "./node_modules/.bin/webdriver-manager update",
++    "webdriver:start": "./node_modules/.bin/webdriver-manager start",
++    "lint": "./node_modules/.bin/tsconfig-lint",
++    "e2e": "./node_modules/.bin/protractor",
++    "test": "./node_modules/.bin/karma start",
++    "ci": "npm run e2e && npm run test",
++    "docs": "./node_modules/.bin/typedoc  --options typedoc.json  src/**/*.ts",
++    "start": "npm run server:dev",
++    "postinstall": "./node_modules/.bin/typings install"
+
+
+
 # Reference
 heavily inspired by https://github.com/wigahluk/play-webpack
