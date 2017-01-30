@@ -143,10 +143,15 @@ $ ng new frontend
 ```
 
 ### angular.io and webpack guide
+
 https://angular.io/docs/ts/latest/guide/webpack.html
 
->     "html-webpack-plugin": "^2.16.1",
->     "extract-text-webpack-plugin": "2.0.0-beta.5",
+### Autogenerate webpack config files
+* Install: npm install -g yo generator-angular2-webpack-starter
+* Run: yo angular2-webpack-starter
+
+
+> $ npm install copy-webpack-plugin html-webpack-plugin extract-text-webpack-plugin --save-dev
 
 >     "file-loader": "^0.9.0",
 >     "html-loader": "^0.4.3",
