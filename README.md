@@ -198,6 +198,17 @@ module.exports = {
 
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
+```
+npm install css-loader --save-dev 
+```
+
+in `rules:` add `test:`
+
+webpack.config.js
+
+```
+ {test: /\.css$/, use: 'css-loader'},
+```
 
 
 ## webpack plugins
