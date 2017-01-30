@@ -162,7 +162,7 @@ $ npm install ts-loader --save-dev
 ```
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
-   `rename`: `'/'` to `'/dist'` in `output.path:`  
+   `rename`: `'/'` to `'../backend/public/dist'` in `output.path:`  
    `add`: `/dist` to `output.publicPath:`
 
 webpack.config.js
