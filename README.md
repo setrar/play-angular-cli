@@ -205,13 +205,7 @@ $ npm install html-loader --save-dev
 ```
 
 ```
-     {
-       test: /\.html$/,
-       loader: 'html',
-       query: {
-         minimize: true
-       }
-     }
+   ,{ test: /\.html$/, use: 'html-loader' }
 ```
 
 `css`
@@ -225,7 +219,7 @@ in `rules:` add `test:`
 webpack.config.js
 
 ```
- {test: /\.css$/, use: 'css-loader'},
+   ,{ test: /\.css$/, use: 'css-loader' }
 ```
 
 
