@@ -196,6 +196,9 @@ module.exports = {
 };
 ```
 
+## webpack [loaders](https://webpack.js.org/concepts/loaders/)
+
+
 
 ## webpack plugins
 
