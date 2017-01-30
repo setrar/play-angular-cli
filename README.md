@@ -14,11 +14,6 @@
 $ activator new backend play-scala
 ```
 
-### angular-cli frontend
-```
-$ ng new frontend
-```
-
 ## Configuration
 
 `replace` the source code in controllers.HomeController.scala
@@ -138,6 +133,13 @@ $ export PLAY_APP_SECRET="put the result here"
 ```
 $ unzip target/universal/backend-1.0-SNAPSHOT.zip
 $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
+```
+
+# Frontend
+
+### angular-cli frontend
+```
+$ ng new frontend
 ```
 
 ## Adding webpack
