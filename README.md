@@ -14,11 +14,6 @@
 $ activator new backend play-scala
 ```
 
-### angular-cli frontend
-```
-$ ng new frontend
-```
-
 ## Configuration
 
 `replace` the source code in controllers.HomeController.scala
@@ -140,6 +135,64 @@ $ unzip target/universal/backend-1.0-SNAPSHOT.zip
 $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
 ```
 
+# Frontend
+
+### angular-cli frontend
+```
+$ ng new frontend
+```
+
+### angular.io and webpack guide
+
+https://angular.io/docs/ts/latest/guide/webpack.html
+
+### Autogenerate webpack config files
+* Install: npm install -g yo generator-angular2-webpack-starter
+* Run: yo angular2-webpack-starter
+
+
+> $ npm install copy-webpack-plugin html-webpack-plugin extract-text-webpack-plugin --save-dev
+
+>     "css-loader": "^0.23.0",
+>     "exports-loader": "0.6.2",
+>     "expose-loader": "^0.7.1",
+>     "file-loader": "^0.9.0",
+>     "istanbul-instrumenter-loader": "^0.1.3",
+>     "imports-loader": "^0.6.4",
+>     "json-loader": "^0.5.3",
+>     "html-loader": "^0.4.3",
+>     "null-loader": "^0.1.1",
+>     "style-loader": "^0.13.1",
+>     "raw-loader": "^0.5.1",
+>     "ts-loader": "^0.7.2",
+>     "tslint-loader": "^2.1.0",
+>     "url-loader": "^0.5.6",
+
+>     "karma-coverage": "^0.5.3",
+>     "karma-phantomjs-launcher": "^1.0.2",
+>     "karma-sourcemap-loader": "^0.3.7",
+>     "karma-webpack": "^2.0.1",
+
+>     "phantomjs": "^1.9.18",
+>     "phantomjs-polyfill": "0.0.1",
+>     "phantomjs-prebuilt": "^2.1.7",
+>     "rimraf": "^2.5.2",
+
+>     "webpack": "2.2.0",
+>     "webpack-dev-server": "2.2.0-rc.0",
+>     "webpack-merge": "^2.4.0"
+
+
+>     "http-server": "^0.8.5",
+>     "reflect-metadata": "0.1.2",
+>     "remap-istanbul": "^0.5.1",
+>     "rimraf": "^2.4.4",
+>     "ts-helper": "0.0.1",
+>     "tsconfig-lint": "^0.4.3",
+>     "typedoc": "^0.3.12",
+>     "typings": "^0.6.1",
+
+
 ## Adding webpack
 ```
 $ cd frontend
@@ -160,16 +213,21 @@ $ npm install ts-loader --save-dev
 ```
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
-   `rename`: `'/'` to `'/dist'` in `output.path:`  
+   `rename`: `'/'` to `'../backend/public/dist'` in `output.path:`  
    `add`: `/dist` to `output.publicPath:`
 
 webpack.config.js
 ```
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+
 module.exports = {
- entry: './index.ts',
+ entry: {
+    app: './src/main.ts',
+ },
  output: {
-   filename: '/bundle.js',
-   path: '/'
+   filename: '[name].js',
+   path: '../backend/public/dist',
+   publicPath: "/dist"
  },
  module: {
    rules: [
@@ -179,12 +237,42 @@ module.exports = {
        exclude: /node_modules/,
      },
    ]
- }, 
+ },
+ plugins: [
+    new HtmlWebpackPlugin({template: './src/index.html'})
+ ],
  resolve: {
    extensions: [".tsx", ".ts", ".js"]
  },
 };
 ```
+
+## webpack [loaders](https://webpack.js.org/concepts/loaders/)
+
+`html`
+
+```
+$ npm install html-loader --save-dev
+```
+
+```
+   ,{ test: /\.html$/, use: 'html-loader' }
+```
+
+`css`
+
+```
+npm install css-loader --save-dev 
+```
+
+in `rules:` add `test:`
+
+webpack.config.js
+
+```
+   ,{ test: /\.css$/, use: 'css-loader' }
+```
+
 
 
 ## webpack plugins
@@ -209,5 +297,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
     ...
   ]
 ```
+
++    "clean": "./node_modules/.bin/rimraf node_modules doc typings coverage dist && npm cache clean",
++    "clean:dist": "./node_modules/.bin/rimraf dist",
++    "preclean:install": "npm run clean",
++    "clean:install": "npm install",
++    "preclean:start": "npm run clean",
++    "clean:start": "npm start",
++    "watch": "npm run watch:dev",
++    "watch:dev": "./node_modules/.bin/webpack --watch --progress --profile --colors --display-error-details --display-cached",
++    "watch:prod": "./node_modules/.bin/webpack --watch --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
++    "build": "npm run build:dev",
++    "prebuild:dev": "npm run clean:dist",
++    "build:dev": "./node_modules/.bin/webpack --progress --profile --colors --display-error-details --display-cached",
++    "prebuild:prod": "npm run clean:dist",
++    "build:prod": "./node_modules/.bin/webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
++    "server": "npm run server:dev",
++    "server:dev": "./node_modules/.bin/webpack-dev-server --progress --profile --colors --display-error-details --display-cached",
++    "server:prod": "./node_modules/.bin/http-server dist --cors",
++    "webdriver:update": "./node_modules/.bin/webdriver-manager update",
++    "webdriver:start": "./node_modules/.bin/webdriver-manager start",
++    "lint": "./node_modules/.bin/tsconfig-lint",
++    "e2e": "./node_modules/.bin/protractor",
++    "test": "./node_modules/.bin/karma start",
++    "ci": "npm run e2e && npm run test",
++    "docs": "./node_modules/.bin/typedoc  --options typedoc.json  src/**/*.ts",
++    "start": "npm run server:dev",
++    "postinstall": "./node_modules/.bin/typings install"
+
+
+
 # Reference
 heavily inspired by https://github.com/wigahluk/play-webpack
