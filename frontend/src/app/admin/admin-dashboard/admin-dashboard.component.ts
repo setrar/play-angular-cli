@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { ActivatedRoute }       from '@angular/router';
-import { Observable }           from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { SelectivePreloadStrategyService } from '../../shared/selective-preload-strategy.service';
 import {  HitService } from '../../shared/hit.service';
 
@@ -36,8 +35,7 @@ export class AdminDashboardComponent implements OnInit {
       .fragment
       .map(fragment => fragment || 'None');
   }
-  getHits()
-  {
-    console.log("Hitting: " + this.hit.getHits() + " times"); 
+  getHits() {
+    console.log('Hitting: ' + this.hit.getHits() + ' times');
   }
 }

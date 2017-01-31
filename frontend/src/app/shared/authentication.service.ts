@@ -17,20 +17,20 @@ export class AuthenticationService {
     this.headers.append('Accept', 'application/json');
     this.headers.append('Content-Type', 'application/json');
   }
-  connect(user: any):Observable<any> {
+  connect(user: any): Observable<any> {
     return this
       .http
       .post('/api/login', JSON.stringify(user), {
         headers: this.headers
       })
-      .map((res:any) => {
-        var data = res.json();
+      .map((res: any) => {
+        const data = res.json();
         return data;
       })
-      .catch((err:any) => Observable.throw(err));
+      .catch((err: any) => Observable.throw(err));
   }
 
-  register(user: any):Observable<any> {
+  register(user: any): Observable<any> {
     return this
       .http
       .post('/api/signup', JSON.stringify(user), {
@@ -40,7 +40,7 @@ export class AuthenticationService {
       .catch((err: any) => Observable.throw(err));
   }
 
-  forgetPassword(email:string):Observable<any> {
+  forgetPassword(email: string): Observable<any> {
     return this
       .http
       .get('/api/forgotpassword/' + email, {
@@ -55,7 +55,7 @@ export class AuthenticationService {
   }
 
   isLoggedIn(): boolean {
-    var number = this.cookieService.get('number');
+    const number = this.cookieService.get('number');
     return false === _.isEmpty(number);
   }
 
@@ -65,11 +65,11 @@ export class AuthenticationService {
 
   checkLoginAndRedirect() {
     if (false === this.isLoggedIn()) {
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/');
     }
   }
 
-  private _handleResponse(response:any) {
+  private _handleResponse(response: any) {
 
     return JSON.parse(response._body);
   }
