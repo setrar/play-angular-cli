@@ -91,8 +91,7 @@ PlayKeys.playRunHooks <+= frontendDirectory.map(base => ng(base))
 // Ends.
 ```
 
-`create` a file with the below source code in `project/ng.scala
-
+`create` a file with the below source code in `project/ng.scala`
 ```
 import java.io.File
 import java.net.InetSocketAddress
