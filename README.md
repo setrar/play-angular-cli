@@ -121,22 +121,6 @@ object ng {
 }
 ```
 
-## Running (Prod)
-
-```
-$ sbt dist
-```
-
-```
-$ sbt playGenerateSecret
-$ export PLAY_APP_SECRET="put the result here"
-```
-
-```
-$ unzip target/universal/backend-1.0-SNAPSHOT.zip
-$ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
-```
-
 # Frontend
 
 ### angular-cli frontend
@@ -264,6 +248,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 ```
 
 
+
+## Running (Prod)
+
+```
+$ sbt dist
+```
+
+```
+$ sbt playGenerateSecret
+$ export PLAY_APP_SECRET="put the result here"
+```
+
+```
+$ unzip target/universal/backend-1.0-SNAPSHOT.zip
+$ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
+```
 
 
 
