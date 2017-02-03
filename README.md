@@ -78,7 +78,7 @@ val distDirectory = ".." + backEndProjectName + "public/dist"
 // Starts: angularCLI build task
 val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
 
-val webpack = "webpack --progress --colors "
+val webpack = "webpack --progress --colors --display-error-details"
 
 val ngBuild = taskKey[Unit]("webpack build task.")
 ngBuild := { Process(webpack , frontendDirectory.value) ! }
@@ -147,7 +147,7 @@ $ cd frontend
 * Install TypeScript's loader  
   `note:` TypeScript global binary should already been installed when using Angular2
 ```
-$ npm install ts-loader angular2-template-loader --save-dev 
+$ npm install ts-loader angular2-template-loader angular2-router-loader --save-dev 
 ```
 
 * Create webpack configuration file   
@@ -198,7 +198,6 @@ module.exports = {
       {test: /\.html$/, loader: 'raw-loader'},
       {test: /\.ts$/,   loaders: [
           {loader: 'ts-loader', query: {compilerOptions: {noEmit: false}}},
-          {loader: 'awesome-typescript-loader'},
           {loader: 'angular2-template-loader'},
           {loader: 'angular2-router-loader'}
         ],
