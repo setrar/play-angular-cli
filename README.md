@@ -148,6 +148,7 @@ $ cd frontend
   `note:` TypeScript global binary should already been installed when using Angular2
 ```
 $ npm install ts-loader angular2-template-loader angular2-router-loader --save-dev 
+$ npm install extract-text-webpack-plugin html-webpack-plugin --save-dev
 ```
 
 * Create webpack configuration file   
