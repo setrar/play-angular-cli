@@ -197,9 +197,13 @@ module.exports = {
       {test: /\.css$/,  loader: 'style!css?-minimize', exclude: /src/},
       {test: /\.html$/, loader: 'raw-loader'},
       {test: /\.ts$/,   loaders: [
-        {loader: 'ts-loader', query: {compilerOptions: {noEmit: false}}},
-        {loader: 'angular2-template-loader'}
-      ]}
+          {loader: 'ts-loader', query: {compilerOptions: {noEmit: false}}},
+          {loader: 'awesome-typescript-loader'},
+          {loader: 'angular2-template-loader'},
+          {loader: 'angular2-router-loader'}
+        ],
+        exclude: [/\.(spec|e2e)\.ts$/]
+      }
     ]
   },
   output: {
