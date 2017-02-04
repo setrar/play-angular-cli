@@ -144,8 +144,8 @@ $ cd frontend
 
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
-* Install TypeScript's loader  
-  `note:` TypeScript global binary should already been installed when using Angular2
+* Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
+  I use ts-loader (instead of awesome-typescript-loader) and angular2-template-loader 
 ```
 $ npm install ts-loader angular2-template-loader --save-dev 
 ```
