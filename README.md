@@ -150,6 +150,12 @@ $ cd frontend
 $ npm install ts-loader angular2-template-loader --save-dev 
 ```
 
+Style loaders
+```
+$ npm install style-loader raw-loader --save-dev
+```
+
+
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
    `rename`: `'/'` to `'../backend/public/dist'` in `output.path:`  
