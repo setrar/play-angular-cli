@@ -227,6 +227,21 @@ module.exports = {
   }
 };
 ```
+# Route Module Management
+
+```
+$ npm install angular2-router-loader --save-dev 
+```
+Add the module entries
+```
+  entry: {
+    'admin'  : './src/app/admin/admin.module.ts',
+    'crisis-center'  : './src/app/crisis-center/crisis-center.module.ts',
+    <...>
+  },
+```
+and 
+
 
 ## webpack plugins
 
