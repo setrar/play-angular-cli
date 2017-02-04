@@ -234,7 +234,14 @@ Add the module entries
     <...>
   },
 ```
-and 
+and add the loader to the `.ts` test entry
+```
+      {test: /\.ts$/,   loaders: [
+          <....>
+          {loader: 'angular2-router-loader'}
+          <....>
+      }
+```
 
 
 ## webpack plugins
