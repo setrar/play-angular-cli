@@ -170,22 +170,12 @@ const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin')
 const DefinePlugin             = require('webpack/lib/DefinePlugin');
 
 const ENV  = process.env.NODE_ENV = 'development';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
 
 const metadata = {
-  env : ENV,
-  host: HOST,
-  port: PORT
+  env : ENV
 };
 
 module.exports = {
-  devServer: {
-    contentBase: 'src',
-    historyApiFallback: true,
-    host: metadata.host,
-    port: metadata.port
-  },
   devtool: 'source-map',
   entry: {
     'main'  : './src/main.ts',
