@@ -198,8 +198,7 @@ module.exports = {
       {test: /\.html$/, loader: 'raw-loader'},
       {test: /\.ts$/,   loaders: [
           {loader: 'ts-loader', query: {compilerOptions: {noEmit: false}}},
-          {loader: 'angular2-template-loader'},
-          {loader: 'angular2-router-loader'}
+          {loader: 'angular2-template-loader'}
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       }
