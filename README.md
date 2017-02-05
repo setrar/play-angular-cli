@@ -152,11 +152,11 @@ $ npm install ts-loader angular2-template-loader --save-dev
 
 Style loaders
 ```
-$ npm install style-loader raw-loader --save-dev
+$ npm install style-loader raw-loader css-loader --save-dev
 ```
 Extra webpack plugin for CSS
 ```
-$ npm install extract-text-webpack-plugin@^2.0.0-beta --save-dev
+$  npm install extract-text-webpack-plugin@~2.0.0-rc.2 --save-dev
 ```
 
 * Create webpack configuration file   
