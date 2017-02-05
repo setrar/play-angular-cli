@@ -154,7 +154,10 @@ Style loaders
 ```
 $ npm install style-loader raw-loader --save-dev
 ```
-
+Extra webpack plugin for CSS
+```
+$ npm install extract-text-webpack-plugin@^2.0.0-beta --save-dev
+```
 
 * Create webpack configuration file   
    `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
