@@ -92,7 +92,7 @@ PlayKeys.playRunHooks <+= frontendDirectory.map(base => ng(base))
 ```
 
 `create` a file with the below source code in `project/ng.scala`
-```
+```scala
 import java.io.File
 import java.net.InetSocketAddress
 
@@ -230,7 +230,7 @@ module.exports = {
 $ npm install angular2-router-loader --save-dev 
 ```
 Add the module entries
-```
+```javascript
   entry: {
     'admin'  : './src/app/admin/admin.module.ts',
     'crisis-center'  : './src/app/crisis-center/crisis-center.module.ts',
@@ -238,7 +238,7 @@ Add the module entries
   },
 ```
 and add the loader to the `.ts` test entry
-```
+```javascript
       {test: /\.ts$/,   loaders: [
           <....>
           {loader: 'angular2-router-loader'}
@@ -258,12 +258,12 @@ $ npm install html-webpack-plugin --save-dev
 * Add HtmlWebpackPlugin object
 
 webpack.config.js
-```
+```javascript
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 ```
 * point the template to the index.html file  
 
-```
+```javascript
   plugins: [
     new HtmlWebpackPlugin({template: './src/index.html'}),
     ...
