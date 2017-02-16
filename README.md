@@ -10,7 +10,7 @@
 
 ### PlayFramework backend
 
-```
+```shell
 $ activator new backend play-scala
 ```
 
@@ -18,7 +18,7 @@ $ activator new backend play-scala
 
 `replace` the source code in controllers.HomeController.scala by  
 
-```
+```scala
 package controllers
 
 import javax.inject.{Inject,Singleton}
