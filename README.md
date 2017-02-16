@@ -10,7 +10,7 @@
 
 ### PlayFramework backend
 
-```shell
+```
 $ activator new backend play-scala
 ```
 
@@ -54,7 +54,7 @@ class HomeController @Inject()(ws: WSClient, environment: Environment)(implicit 
 
 `add` the below source code to `conf/routes`   
 
-```
+```yaml
 
 <...>
 
