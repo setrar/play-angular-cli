@@ -170,7 +170,7 @@ $  npm install extract-text-webpack-plugin@~2.0.0-rc.2 --save-dev
 * create file `webpack.config.js`
 
 webpack.config.js
-```
+```javascript
 const HtmlWebpackPlugin        = require('html-webpack-plugin'); //installed via npm
 
 const path                     = require('path');
