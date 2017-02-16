@@ -64,7 +64,7 @@ GET     /dist/*file                 controllers.HomeController.dist(file)
 
 `add` the below source code in `built.sbt`
 
-```
+```sbt
 
 <...>
 
