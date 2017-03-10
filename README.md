@@ -124,13 +124,13 @@ object ng {
 # Frontend
 
 ### angular-cli frontend
-```
+```bash
 $ ng new frontend
 ```
 
 
 ## Adding webpack
-```
+```bash
 $ cd frontend
 ```
 
@@ -146,12 +146,12 @@ $ cd frontend
 
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
   I use ts-loader (instead of awesome-typescript-loader) and angular2-template-loader 
-```
+```bash
 $ npm install ts-loader angular2-template-loader --save-dev 
 ```
 
 Style loaders
-```
+```bash
 $ npm install style-loader raw-loader css-loader --save-dev
 ```
 Extra webpack plugin for CSS
