@@ -156,7 +156,7 @@ $ npm install style-loader raw-loader css-loader --save-dev
 ```
 Extra webpack plugin for CSS
 ```
-$  npm install extract-text-webpack-plugin@~2.0.0-rc.2 --save-dev
+$  npm install extract-text-webpack-plugin --save-dev
 ```
 
 * Create webpack configuration file   
@@ -164,10 +164,17 @@ $  npm install extract-text-webpack-plugin@~2.0.0-rc.2 --save-dev
    `rename`: `'/'` to `'../backend/public/dist'` in `output.path:`  
    `add`: `/dist` to `output.publicPath:`
 
-* Copying file `vendor.ts`
-`copy`: `webpack-template/vendor.ts` to `src`
+* `copy`: `webpack-template/vendor.ts` to `src`
+```
+$ cp ../webpack-template/vendor.ts src/
+```
 
 * create file `webpack.config.js`
+
+or copy from webpack-template
+```
+$ cp ../webpack-template/webpack.config.js .
+```
 
 webpack.config.js
 ```javascript
