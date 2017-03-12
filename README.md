@@ -78,7 +78,12 @@ val distDirectory = ".." + backEndProjectName + "public/dist"
 // Starts: angularCLI build task
 val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
 
-val webpack = "webpack --progress --colors --display-error-details"
+// Unix
+// val webpack = "node_modules/.bin/webpack --progress --colors --display-error-details"
+
+// Windows
+val webpack = "cmd node_modules\\.bin\\webpack --progress --colors --display-error-details"
+
 
 val ngBuild = taskKey[Unit]("webpack build task.")
 ngBuild := { Process(webpack , frontendDirectory.value) ! }
@@ -145,9 +150,8 @@ $ cd frontend
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
-  I use ts-loader (instead of awesome-typescript-loader) and angular2-template-loader 
 ```bash
-$ npm install ts-loader angular2-template-loader --save-dev 
+$ npm install awesome-typescript-loader angular2-template-loader --save-dev 
 ```
 
 Style loaders
