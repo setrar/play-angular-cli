@@ -150,9 +150,8 @@ $ cd frontend
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
-  I use ts-loader (instead of awesome-typescript-loader) and angular2-template-loader 
 ```bash
-$ npm install ts-loader angular2-template-loader --save-dev 
+$ npm install awesome-typescript-loader angular2-template-loader --save-dev 
 ```
 
 Style loaders
