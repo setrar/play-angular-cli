@@ -9,7 +9,7 @@ const DefinePlugin             = require('webpack/lib/DefinePlugin');
 
 const ENV  = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 4200;
 const DIST = process.env.DIST || '../backend/public/dist';
 
 const metadata = {
@@ -35,6 +35,7 @@ const metadata = {
   devtool: 'source-map',
   entry: {
     'main'      : './src/main.ts',
+    'polyfills' : './src/polyfills.ts',
     'vendor'    : './src/vendor.ts'
   },
   output: {
@@ -44,17 +45,24 @@ const metadata = {
   },
   module: {
     rules: [
+      {test: /\.ts$/,   loaders: [
+          {loader: 'awesome-typescript-loader', options: { configFileName: path.resolve(__dirname, './src/tsconfig.json') }},
+          {loader: 'angular2-template-loader'},
+          {loader: 'angular2-router-loader'}
+        ],
+        exclude: [/\.(spec|e2e)\.ts$/]
+      },
       {test: /\.html$/, use: 'raw-loader'},
       {test: /\.css$/,  use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: /\.scss$/, use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader?sourceMap', 'sass-loader?sourceMap'] })},
-      {test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'file-loader?name=public/fonts/[name].[ext]'},
-      {test: /\.ts$/,   loaders: [
-        {loader: 'awesome-typescript-loader', options: { configFileName: path.resolve(__dirname, './src/tsconfig.json') }},
-        {loader: 'angular2-template-loader'},
-        {loader: 'angular2-router-loader'}
-      ],
-        exclude: [/\.(spec|e2e)\.ts$/]
-      }
+      {test: /\.scss$/, use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          'css-loader?sourceMap',
+          'sass-loader?sourceMap'
+        ]
+      })}
+      ,
+      {test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'file-loader?name=public/fonts/[name].[ext]'}
     ]
   },
   plugins: [
