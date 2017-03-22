@@ -151,7 +151,7 @@ $ cd frontend
 
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
 ```bash
-$ npm install awesome-typescript-loader angular2-template-loader --save-dev 
+$ npm install ng-router-loader awesome-typescript-loader angular2-template-loader --save-dev 
 ```
 
 Style loaders
