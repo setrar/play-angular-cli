@@ -9,7 +9,7 @@ const DefinePlugin             = require('webpack/lib/DefinePlugin');
 
 const ENV  = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 4200;
+const PORT = process.env.PORT || 9000;
 const DIST = process.env.DIST || '../backend/public/dist';
 
 const metadata = {
@@ -19,10 +19,12 @@ const metadata = {
   dist: DIST
 };
 
-// 'about'     : './src/app/about/about.module.ts',
-//   'dashboard' : './src/app/dashboard/dashboard.module.ts',
-//   'home'      : './src/app/home/home-routing.module.ts',
-//   'user'      : './src/app/user/user.module.ts',
+// 'about'       : './src/app/about/about.module.ts',
+// 'dashboard'   : './src/app/dashboard/dashboard.module.ts',
+// 'home'        : './src/app/home/home-routing.module.ts',
+// 'user'        : './src/app/user/user.module.ts',
+// 'admin'       : './src/app/admin/admin.module.ts',
+// 'crisisCenter': './src/app/crisis-center/crisis-center.module.ts',
 
   module.exports = {
   devServer: {
@@ -34,7 +36,9 @@ const metadata = {
   },
   devtool: 'source-map',
   entry: {
-    'main'      : './src/main.ts',
+    'main' : './src/main.ts',
+    'admin': './src/app/admin/admin.module.ts',
+    'crisisCenter': './src/app/crisis-center/crisis-center.module.ts',
     'polyfills' : './src/polyfills.ts',
     'vendor'    : './src/vendor.ts'
   },
@@ -45,24 +49,87 @@ const metadata = {
   },
   module: {
     rules: [
-      {test: /\.ts$/,   loaders: [
-          {loader: 'awesome-typescript-loader', options: { configFileName: path.resolve(__dirname, './src/tsconfig.json') }},
-          {loader: 'angular2-template-loader'},
-          {loader: 'angular2-router-loader'}
+
+      /*
+       * Typescript loader support for .ts
+       *
+       * Component Template/Style integration using `angular2-template-loader`
+       * Angular 2 lazy loading (async routes) via `ng-router-loader`
+       *
+       * `ng-router-loader` expects vanilla JavaScript code, not TypeScript code. This is why the
+       * order of the loader matter.
+       *
+       * See: https://github.com/s-panferov/awesome-typescript-loader
+       * See: https://github.com/TheLarkInn/angular2-template-loader
+       * See: https://github.com/shlomiassaf/ng-router-loader
+       */
+      {
+        test: /\.ts$/,
+        use: [
+          // MAKE SURE TO CHAIN VANILLA JS CODE, I.E. TS COMPILATION OUTPUT.
+            'ng-router-loader', 'awesome-typescript-loader', 'angular2-template-loader'
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
-      {test: /\.html$/, use: 'raw-loader'},
-      {test: /\.css$/,  use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })},
-      {test: /\.scss$/, use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          'css-loader?sourceMap',
-          'sass-loader?sourceMap'
-        ]
-      })}
-      ,
-      {test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'file-loader?name=public/fonts/[name].[ext]'}
+
+      /*
+       * Json loader support for *.json files.
+       *
+       * See: https://github.com/webpack/json-loader
+       */
+      {
+        test: /\.json$/,
+        use: 'json-loader'
+      },
+
+      /*
+       * to string and css loader support for *.css files (from Angular components)
+       * Returns file content as string
+       *
+       */
+      {
+        test: /\.css$/,
+        use: ['to-string-loader', 'css-loader'],
+        exclude: [path.resolve(__dirname, 'src/styles')]
+      },
+
+      /*
+       * to string and sass loader support for *.scss files (from Angular components)
+       * Returns compiled css content as string
+       *
+       */
+      {
+        test: /\.scss$/,
+        use: ['to-string-loader', 'css-loader', 'sass-loader'],
+        exclude: [path.resolve(__dirname, 'src/styles')]
+      },
+
+      /* Raw loader support for *.html
+       * Returns file content as string
+       *
+       * See: https://github.com/webpack/raw-loader
+       */
+      {
+        test: /\.html$/,
+        use: 'raw-loader',
+        exclude: [path.resolve(__dirname, 'src/index.html')]
+      },
+
+      /*
+       * File loader for supporting images, for example, in CSS files.
+       */
+      {
+        test: /\.(jpg|png|gif)$/,
+        use: 'file-loader'
+      },
+
+      /* File loader for supporting fonts, for example, in CSS files.
+       */
+      {
+        test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
+        use: 'file-loader'
+      }
+
     ]
   },
   plugins: [
