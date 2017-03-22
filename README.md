@@ -158,9 +158,9 @@ Style loaders
 ```bash
 $ npm install to-string-loader style-loader css-loader --save-dev
 ```
-Extra webpack plugin for CSS
+Extra Libraries
 ```
-$  npm install extract-text-webpack-plugin --save-dev
+$  npm install lodash moment include-media bootstrap --save
 ```
 
 * Create webpack configuration file   
@@ -238,7 +238,7 @@ module.exports = {
 # Route Module Management
 
 ```
-$ npm install angular2-router-loader --save-dev 
+$ npm install ng-route-loader --save-dev 
 ```
 Add the module entries
 ```javascript
