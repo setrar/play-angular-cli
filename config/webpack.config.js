@@ -37,8 +37,6 @@ const metadata = {
   devtool: 'source-map',
   entry: {
     'main' : './src/main.ts',
-    'admin': './src/app/admin/admin.module.ts',
-    'crisisCenter': './src/app/crisis-center/crisis-center.module.ts',
     'polyfills' : './src/polyfills.ts',
     'vendor'    : './src/vendor.ts'
   },
