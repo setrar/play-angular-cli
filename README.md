@@ -82,7 +82,7 @@ val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
 // val webpack = "node_modules/.bin/webpack --progress --colors --display-error-details"
 
 // Windows
-val webpack = "cmd node_modules\\.bin\\webpack --progress --colors --display-error-details"
+val webpack = "cmd /c node_modules\\.bin\\webpack --config webpack.config.js --progress --colors --display-error-details"
 
 
 val ngBuild = taskKey[Unit]("webpack build task.")
