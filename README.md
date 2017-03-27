@@ -107,22 +107,6 @@ $ ng new frontend
 ```bash
 $ cd frontend
 ```
-## webpack [loaders](https://webpack.js.org/concepts/loaders/)
-
-* Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
-```bash
-$ npm install ng-router-loader awesome-typescript-loader angular2-template-loader --save-dev 
-```
-
-Style loaders
-```bash
-$ npm install to-string-loader style-loader css-loader --save-dev
-```
-Extra Libraries
-```
-$  npm install lodash moment include-media bootstrap --save
-```
-
 ## Create webpack configuration file   
 
 > In ther frontend directory
@@ -137,6 +121,28 @@ $ cp ../config/vendor.ts src/
 * copy from webpack-template
 ```
 $ cp ../config/webpack.config.js .
+```
+
+* run install
+```
+$ node_modules/.bin/webpack --config webpack.config.js
+```
+
+
+## webpack [loaders](https://webpack.js.org/concepts/loaders/)
+
+* Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
+```bash
+$ npm install ng-router-loader awesome-typescript-loader angular2-template-loader --save-dev 
+```
+
+Style loaders
+```bash
+$ npm install to-string-loader style-loader css-loader --save-dev
+```
+Extra Libraries
+```
+$  npm install lodash moment include-media bootstrap --save
 ```
 
 ## Running (Prod)
