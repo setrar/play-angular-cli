@@ -89,39 +89,6 @@ ngBuild := { Process( webpack + params , frontendDirectory.value) ! }
 (packageBin in Universal) <<= (packageBin in Universal) dependsOn ngBuild
 // Ends.
 
-// Starts: ngServe process when running locally and build actions for production bundle
-PlayKeys.playRunHooks <+= frontendDirectory.map(base => ng(base))
-// Ends.
-```
-
-`create` a file with the below source code in `project/ng.scala`
-```scala
-import java.io.File
-import java.net.InetSocketAddress
-
-import play.sbt.PlayRunHook
-import sbt.Process
-
-object ng {
-    def apply(base: File): PlayRunHook = {
-
-        object ngServe extends PlayRunHook {
-
-            var process: Option[Process] = None // This is really ugly, how can I do this functionally?
-
-            override def afterStarted(addr: InetSocketAddress): Unit = {
-                process = Some (Process( "ng serve --watch " , base).run)
-            }
-
-            override def afterStopped(): Unit = {
-                process.foreach(_.destroy)
-                process = None
-            }
-        }
-
-        ngServe
-    }
-}
 ```
 
 # Frontend
@@ -136,15 +103,6 @@ $ ng new frontend
 ```bash
 $ cd frontend
 ```
-
-* Add webpack to the project (package.json)  
-  `note:` that using the parameters --save-dev and -save will respectively 
-  add the packages to package.json sections devDependencies and dependencies
-
-  `warning:` do not install webpack it's already installed by angular-cli
-  > npm install webpack@beta --save-dev 
-
-
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
@@ -161,125 +119,19 @@ Extra Libraries
 $  npm install lodash moment include-media bootstrap --save
 ```
 
-* Create webpack configuration file   
-   `rename`: `'/.index.js'` to `'./src/main.ts'` in `entry:`  
-   `rename`: `'/'` to `'../backend/public/dist'` in `output.path:`  
-   `add`: `/dist` to `output.publicPath:`
+## Create webpack configuration file   
 
-* `copy`: `webpack-template/vendor.ts` to `src`
+* `copy`: `config/vendor.ts` to `src`
 ```
-$ cp ../webpack-template/vendor.ts src/
+$ cp ../config/vendor.ts src/
 ```
 
 * create file `webpack.config.js`
 
-or copy from webpack-template
+* copy from webpack-template
 ```
-$ cp ../webpack-template/webpack.config.js .
+$ cp ../config/webpack.config.js .
 ```
-
-webpack.config.js
-```javascript
-const HtmlWebpackPlugin        = require('html-webpack-plugin'); //installed via npm
-
-const path                     = require('path');
-const CommonsChunkPlugin       = require('webpack/lib/optimize/CommonsChunkPlugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-const DefinePlugin             = require('webpack/lib/DefinePlugin');
-
-const ENV  = process.env.NODE_ENV = 'development';
-
-const metadata = {
-  env : ENV
-};
-
-module.exports = {
-  devtool: 'source-map',
-  entry: {
-    'main'  : './src/main.ts',
-    'vendor': './src/vendor.ts'
-  },
-  module: {
-    loaders: [
-      {test: /\.css$/,  loader: 'raw-loader', exclude: /node_modules/},
-      {test: /\.css$/,  loader: 'style!css?-minimize', exclude: /src/},
-      {test: /\.html$/, loader: 'raw-loader'},
-      {test: /\.ts$/,   loaders: [
-          {loader: 'ts-loader', query: {compilerOptions: {noEmit: false}}},
-          {loader: 'angular2-template-loader'}
-        ],
-        exclude: [/\.(spec|e2e)\.ts$/]
-      }
-    ]
-  },
-  output: {
-    filename: '[name].js',
-    path: '../backend/public/dist',
-    publicPath: "/dist"
-  },
-  plugins: [
-    new CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity}),
-    new DefinePlugin({'webpack': {'ENV': JSON.stringify(metadata.env)}}),
-    new ContextReplacementPlugin(
-      // needed as a workaround for the Angular's internal use System.import()
-      // The (\\|\/) piece accounts for path separators in *nix and Windows
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-      path.join(__dirname, 'src') // location of your src
-    ),
-    new HtmlWebpackPlugin({template: './src/index.html'})
-  ],
-  resolve: {
-    extensions: ['.ts', '.js']
-  }
-};
-```
-# Route Module Management
-
-```
-$ npm install ng-route-loader --save-dev 
-```
-Add the module entries
-```javascript
-  entry: {
-    'admin'  : './src/app/admin/admin.module.ts',
-    'crisis-center'  : './src/app/crisis-center/crisis-center.module.ts',
-    <...>
-  },
-```
-and add the loader to the `.ts` test entry
-```javascript
-      {test: /\.ts$/,   loaders: [
-          <....>
-          {loader: 'angular2-router-loader'}
-          <....>
-      }
-```
-
-
-## webpack plugins
-
-* Add the [html-webpack-plugin](https://webpack.js.org/concepts/plugins/#configuration) to change the index.html file  
-  this change will allow `<script src=/asset/...>`
-
-```
-$ npm install html-webpack-plugin --save-dev
-```
-* Add HtmlWebpackPlugin object
-
-webpack.config.js
-```javascript
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-```
-* point the template to the index.html file  
-
-```javascript
-  plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'}),
-    ...
-  ]
-```
-
-
 
 ## Running (Prod)
 
@@ -296,14 +148,3 @@ $ export PLAY_APP_SECRET="put the result here"
 $ unzip target/universal/backend-1.0-SNAPSHOT.zip
 $ backend-1.0-SNAPSHOT/bin/backend -Dplay.crypto.secret=$PLAY_APP_SECRET
 ```
-
-
-
-
-# Reference
-
-heavily inspired by https://github.com/wigahluk/play-webpack  
-
-## angular.io and webpack guide
-
-https://angular.io/docs/ts/latest/guide/webpack.html
