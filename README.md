@@ -6,6 +6,10 @@
 * Install activator and sbt
 * Install node, npm and angular-cli
 
+## Goal
+
+![alt tag](webpack.png)
+
 ## Setup
 
 ### PlayFramework backend
