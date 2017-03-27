@@ -125,6 +125,8 @@ $  npm install lodash moment include-media bootstrap --save
 
 ## Create webpack configuration file   
 
+> In ther frontend directory
+
 * `copy`: `config/vendor.ts` to `src`
 ```
 $ cp ../config/vendor.ts src/
