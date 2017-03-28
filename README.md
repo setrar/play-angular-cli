@@ -140,8 +140,14 @@ Style loaders
 ```bash
 $ npm install to-string-loader style-loader css-loader --save-dev
 ```
-Extra Libraries
+
+Asset Copy plugin
+```bash
+$ npm install copy-webpack-plugin --save-dev
 ```
+
+Extra Libraries (as needed)
+```bash
 $  npm install lodash moment include-media bootstrap --save
 ```
 

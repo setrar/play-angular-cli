@@ -6,17 +6,20 @@ const ExtractTextPlugin        = require('extract-text-webpack-plugin');
 const CommonsChunkPlugin       = require('webpack/lib/optimize/CommonsChunkPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const DefinePlugin             = require('webpack/lib/DefinePlugin');
+const CopyWebpackPlugin        = require('copy-webpack-plugin');
 
 const ENV  = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 9000;
 const DIST = process.env.DIST || '../backend/public/dist';
+const ASSETS = process.env.ASSETS || '../backend/public';
 
 const metadata = {
   env : ENV,
   host: HOST,
   port: PORT,
-  dist: DIST
+  dist: DIST,
+  assets: ASSETS
 };
 
 // 'about'       : './src/app/about/about.module.ts',
@@ -126,12 +129,43 @@ const metadata = {
       {
         test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
         use: 'file-loader'
-      }
+      },
+
+      /*
+       * Extract CSS files from .src/styles directory to external CSS file
+       */
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        }),
+        include: [path.resolve(__dirname, 'src/styles')]
+      },
+
+      /*
+       * Extract and compile SCSS files from .src/styles directory to external CSS file
+       */
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader'
+        }),
+        include: [path.resolve(__dirname, 'src/styles')]
+      },
 
     ]
   },
   plugins: [
-    new ExtractTextPlugin("styles.css"),
+    /**
+     * Plugin: ExtractTextPlugin
+     * Description: Extracts imported CSS files into external stylesheet
+     *
+     * See: https://github.com/webpack/extract-text-webpack-plugin
+     */
+    new ExtractTextPlugin('[name].[contenthash].css'),
+
     new CommonsChunkPlugin({name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity}),
     new DefinePlugin({'webpack': {'ENV': JSON.stringify(metadata.env)}}),
     new ContextReplacementPlugin(
@@ -140,7 +174,26 @@ const metadata = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       path.join(__dirname, 'src') // location of your src
     ),
-    new HtmlWebpackPlugin({template: './src/index.html'})
+    new HtmlWebpackPlugin({template: './src/index.html'}),
+    /*
+     * Plugin: CopyWebpackPlugin
+     * Description: Copy files and directories in webpack.
+     *
+     * Copies project static assets.
+     *
+     * See: https://www.npmjs.com/package/copy-webpack-plugin
+     */
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: path.resolve(__dirname, metadata.assets ) }
+    ]),
+
+    /**
+     * --TODO should be DEV ONLY
+     */
+    new CopyWebpackPlugin([
+      { from: 'src/assets', to: path.resolve(__dirname, metadata.dist + '/assets') },
+    ]),
+
   ],
   resolve: {
     extensions: ['.ts', '.js']
