@@ -138,7 +138,7 @@ $ npm install ng-router-loader awesome-typescript-loader angular2-template-loade
 
 Style loaders
 ```bash
-$ npm install to-string-loader style-loader css-loader --save-dev
+$ npm install raw-loader to-string-loader style-loader css-loader sass-loader --save-dev
 ```
 
 Asset Copy plugin
