@@ -131,24 +131,26 @@ $ node_modules/.bin/webpack --config webpack.config.js
 
 ## webpack [loaders](https://webpack.js.org/concepts/loaders/)
 
+ `*** (not already installed by angular-cli)`
+
 * Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
 ```bash
 $ npm install ng-router-loader awesome-typescript-loader angular2-template-loader --save-dev 
 ```
 
-Style loaders
+Style loaders `***`
 ```bash
-$ npm install raw-loader to-string-loader style-loader css-loader sass-loader --save-dev
+$ npm install to-string-loader --save-dev
 ```
 
-Asset Copy plugin
+Plugins `***`
 ```bash
 $ npm install copy-webpack-plugin --save-dev
 ```
 
-Extra Libraries (as needed)
+Extra Libraries `***`
 ```bash
-$  npm install lodash moment include-media bootstrap --save
+$  npm install moment include-media bootstrap --save
 ```
 
 ## Running (Prod)
