@@ -125,7 +125,7 @@ $ cp ../config/webpack.config.js .
 
 * run install
 ```
-$ node_modules/.bin/webpack --config webpack.config.js
+$ node_modules/.bin/webpack --config webpack.config.js --progress --colors
 ```
 
 
