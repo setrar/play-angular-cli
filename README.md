@@ -6,6 +6,10 @@
 * Install activator and sbt
 * Install node, npm and angular-cli
 
+## Super-Powers
+
+http://www.dzurico.com/angular-cli-with-the-super-powers/
+
 ## Goal
 
 ![alt tag](webpack.png)
