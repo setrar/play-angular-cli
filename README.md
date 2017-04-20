@@ -116,7 +116,7 @@ $ cd frontend
 ```
 ## Create webpack configuration file   
 
-> In ther frontend directory
+> In the frontend directory
 
 * `copy`: `config/vendor.ts` to `src`
 ```
