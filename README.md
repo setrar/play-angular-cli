@@ -6,10 +6,6 @@
 * Install activator and sbt
 * Install node, npm and angular-cli
 
-## Super-Powers
-
-http://www.dzurico.com/angular-cli-with-the-super-powers/
-
 ## Goal
 
 ![alt tag](webpack.png)
@@ -79,7 +75,7 @@ GET     /dist/*file                 controllers.HomeController.dist(file)
 
 <...>
 
-/* ================================= WEBPACK ================================== */
+/* ================================= NG BUILD ================================== */
 
 val frontEndProjectName = "frontend"
 val backEndProjectName = "backend"
@@ -88,15 +84,18 @@ val distDirectory = ".." + backEndProjectName + "public/dist"
 // Starts: angularCLI build task
 val frontendDirectory = baseDirectory {_ /".."/frontEndProjectName}
 
-val webpack = sys.props("os.name").toLowerCase match {
-  case os if os.contains("win") ⇒ "cmd /c node_modules\\.bin\\webpack"
-  case _ ⇒ "node_modules/.bin/webpack"
+val ng = sys.props("os.name").toLowerCase match {
+  case os if os.contains("win") => "cmd /c ng"
+  case _ => "ng"
 }
 
-val params = " --config webpack.config.js --progress --colors --display-error-details"
+val params = sys.props("os.name").toLowerCase match {
+  case os if os.contains("win") => " build --deploy-url /dist --output-path ..\\backend\\public\\dist --progress "
+  case _ => " build --deploy-url /dist --output-path ../backend/public/dist --progress "
+}
 
-val ngBuild = taskKey[Unit]("webpack build task.")
-ngBuild := { Process( webpack + params , frontendDirectory.value) ! }
+val ngBuild = taskKey[Unit]("ng build task.")
+ngBuild := { Process( ng + params , frontendDirectory.value) ! }
 (packageBin in Universal) <<= (packageBin in Universal) dependsOn ngBuild
 // Ends.
 
@@ -106,58 +105,7 @@ ngBuild := { Process( webpack + params , frontendDirectory.value) ! }
 
 ### angular-cli frontend
 ```bash
-$ ng new frontend
-```
-
-
-## Adding webpack
-```bash
-$ cd frontend
-```
-## Create webpack configuration file   
-
-> In the frontend directory
-
-* `copy`: `config/vendor.ts` to `src`
-```
-$ cp ../config/vendor.ts src/
-```
-
-* create file `webpack.config.js`
-
-* copy from webpack-template
-```
-$ cp ../config/webpack.config.js .
-```
-
-* run install
-```
-$ node_modules/.bin/webpack --config webpack.config.js --progress --colors
-```
-
-
-## webpack [loaders](https://webpack.js.org/concepts/loaders/)
-
- `*** (not already installed by angular-cli)`
-
-* Install [TypeScript's loaders](https://webpack.js.org/guides/webpack-and-typescript/)
-```bash
-$ npm install ng-router-loader awesome-typescript-loader angular2-template-loader --save-dev 
-```
-
-Style loaders `***`
-```bash
-$ npm install to-string-loader --save-dev
-```
-
-Plugins `***`
-```bash
-$ npm install copy-webpack-plugin --save-dev
-```
-
-Extra Libraries `***`
-```bash
-$  npm install moment include-media bootstrap --save
+$ ng new frontend --style=scss
 ```
 
 ## Running (Prod)
